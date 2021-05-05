@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <span>Imenik</span>
+
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [class.d-none]="!jeUlogiran">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
