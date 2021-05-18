@@ -1,98 +1,117 @@
-import { Todo } from './models/todo.model';
+// import { Todo } from './models/todo.model';
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+// import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Kontakt } from './models/kontakt.model';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  supabaseUrl = "https://mrvmlytcfybswfzdapuy.supabase.co";
-  supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyMDA0MTg2NSwiZXhwIjoxOTM1NjE3ODY1fQ.9OQTPT_4UVPK-GKGX8cos2slLOkTvOjOAjSDO--ie5g';
-  supabase: SupabaseClient;
+  private url = 'https://mrvmlytcfybswfzdapuy.supabase.co/rest/v1/';
+  private apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyMDA0MTg2NSwiZXhwIjoxOTM1NjE3ODY1fQ.9OQTPT_4UVPK-GKGX8cos2slLOkTvOjOAjSDO--ie5g';
 
+  constructor(private http: HttpClient) { }
 
-  constructor() {
-    this.supabase = createClient(this.supabaseUrl, this.supabaseKey);
+  getKontakti(): Observable<any> {
+    return this.http.get<any>(this.url + 'kontakti', {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
   }
 
-  async getKontakti() {
-    let { data: kontakti, error } = await this.supabase
-      .from<Kontakt>('kontakti')
-      .select('*');
-    return { kontakti, error };
+  getKontakt(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'kontakti?id=eq.' + id, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
   }
 
-  async addKontakt(kontakt: Kontakt) {
-    const { data, error } =
-      await this.supabase
-        .from<Kontakt>('kontakti')
-        .insert(kontakt);
-    return { data, error };
+  deleteKontakt(id: number): Observable<void> {
+    return this.http.delete<any>(this.url + 'kontakti?id=eq.' + id, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
   }
 
-  // async addTodo(todo: Todo) {
-  //   const { data, error } = await this.supabase
-  //     .from<Todo>('todos')
-  //     .insert(todo)
-  //   return { data, error };
-  // }
-  // async getTodos() {
-  //   let { data: todos, error } = await this.supabase
-  //     .from<Todo>('todos')
-  //     .select('*')
-  //     .limit(10)
-  //   return { todos, error };
-  // }
-
-  async deleteKontakt(id: number) {
-    const data = await this.supabase
-      .from('kontakti')
-      .delete()
-      .match({ id: id.toString() })
-    return data;
+  postKontakt(kontakt: Kontakt): Observable<void> {
+    return this.http.post<any>(this.url + 'kontakti' + kontakt, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
   }
 
-  // async deleteTodo(id: string) {
-  //   const data = await this.supabase
-  //     .from('todos')
-  //     .delete()
-  //     .match({ id: id })
-  //   return data
-  // }
-
-  // async update(todo: Todo) {
-  //   const { data, error } = await this.supabase
-  //     .from('todos')
-  //     .update(todo)
-  //     .match({ id: todo.id })
-  // }
-
-
-  async update(kontakt: Kontakt) {
-    const { data, error } = await this.supabase
-      .from('kontakti')
-      .update(kontakt)
-      .match({ id: kontakt.id.toString() })
+  putKontakt(id: number, kontakt: Kontakt): Observable<void> {
+    return this.http.put<any>(this.url + 'kontakti?id=eq.' + id, kontakt, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
   }
 
-  // async updatCheck(todo: Todo) {
-  //   const { data, error } = await this.supabase
-  //     .from('todos')
-  //     .update({ done: todo.done })
-  //     .match({ id: todo.id });
-  // }
+  getTelefon(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'telefon?id=eq.' + id, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
 
-  // listenAll() {
-  //   const mySubscription = this.supabase
-  //     .from('kontakti')
-  //     .on('*', payload => {
-  //       console.log('Change received!', payload)
-  //     })
-  //     .subscribe();
-  //   return mySubscription;
-  // }
+  }
+    deleteTelefon(id: number): Observable<void> {
+      return this.http.delete<any>(this.url + 'telefon?id=eq.' + id, {
+        headers: new HttpHeaders({
+          apikey: this.apiKey,
+        })
+      });
+    }
+    postTelefon(telefonskiBroj: string): Observable<void> {
+      return this.http.post<any>(this.url + 'telefon' + telefonskiBroj, {
+        headers: new HttpHeaders({
+          apikey: this.apiKey,
+        })
+      });
+    }
+      putTelefon(id: number, telefonskiBroj: string): Observable<void> {
+        return this.http.put<any>(this.url + 'telefon?id=eq.' + id, telefonskiBroj, {
+          headers: new HttpHeaders({
+            apikey: this.apiKey,
+          })
+        });
+}
+
+getEmail(id: number): Observable<any> {
+  return this.http.get<any>(this.url + 'email?id=eq.' + id, {
+    headers: new HttpHeaders({
+      apikey: this.apiKey,
+    })
+  });
 
 }
+  deleteEmail(id: number): Observable<void> {
+    return this.http.delete<any>(this.url + 'email?id=eq.' + id, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+  postEmail(email: string): Observable<void> {
+    return this.http.post<any>(this.url + 'email' + email, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+    putEmail(id: number, email: string): Observable<void> {
+      return this.http.put<any>(this.url + 'email?id=eq.' + id, email, {
+        headers: new HttpHeaders({
+          apikey: this.apiKey,
+        })
+      });
+    }
+  }

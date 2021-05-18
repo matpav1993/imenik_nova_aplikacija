@@ -21,37 +21,50 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-
-    // Getting contacts
-    this.api.getKontakti().then((data) => {
-      this.kontakti = data.kontakti;
-      console.log(this.kontakti);
+    this.api.getKontakt(2)
+      // tslint:disable-next-line: deprecation
+      .subscribe(data => {
+      console.log(data);
     });
 
+    this.api.getKontakti()
+      // tslint:disable-next-line: deprecation
+      .subscribe(data => {
+      this.kontakti = data;
+    });
+
+
+
     // Getting contacts
-    let kontakt = { "id": 1, "ime": "Ivo", "prezime": "Milić", "telefonskiBroj": "1231213", "email": "ivo.milic@gmail.com", "opis": "xxxx" };
+    // this.api.getKontakti().then((data) => {
+    //   this.kontakti = data.kontakti;
+    //   console.log(this.kontakti);
+    // });
 
-    this.api
-      .addKontakt(kontakt)
-      .then((payload) => {
-        console.log(payload);
-      }).catch((erro) => 
-      console.log(`Error in add TODO ${erro}`));
+    // // Getting contacts
+    // const kontakt = { "id": 1, "ime": "Ivo", "prezime": "Milić", "telefonskiBroj": "1231213", "email": "ivo.milic@gmail.com", "opis": "xxxx" };
 
-    // Updateanje kontakta
-    this.api
-      .update(kontakt)
-      .then((data) => {
-        console.log(data);
-      });
+    // this.api
+    //   .addKontakt(kontakt)
+    //   .then((payload) => {
+    //     console.log(payload);
+    //   }).catch((erro) => 
+    //   console.log(`Error in add TODO ${erro}`));
 
-    // Brisanje kontakta
-    let idKontakta = 1;
-    this.api
-      .deleteKontakt(idKontakta)
-      .then((data) => {
-        console.log(data);
-      });
+    // // Updateanje kontakta
+    // this.api
+    //   .update(kontakt)
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
+
+    // // Brisanje kontakta
+    // let idKontakta = 1;
+    // this.api
+    //   .deleteKontakt(idKontakta)
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
 
   }
 
