@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Kontakt } from 'src/app/models/kontakt.model';
 
@@ -18,9 +19,9 @@ export class DodajKontaktComponent implements OnInit {
     prezime: "",
     telefonskiBroj: ""
   };
-  router: any;
+  
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router ) { }
 
   ngOnInit(): void {
 
