@@ -1,1 +1,66 @@
-<p>dodaj-kontakt works!</p>
+<div mat-line style="background-color: rgb(241, 233, 233);">
+  <app-back-button></app-back-button>
+
+  <mat-card style="background-color: rgb(255, 255, 255);">
+    <div
+      style="width: 50px; height: 50px;border-radius: 51%;overflow: hidden;border: 2px solid #2e2e2e; margin-top: 2em; margin-left: 1em; display: flex; align-items: flex-end; justify-content: flex-end;">
+      <i class="material-icons">image</i>
+      <img [src]=" " alt="">
+    </div>
+
+    <div class="detail-row">
+      <div class="ikona">
+        <i class="material-icons" style="margin-top: 1.5px;">account_circle</i>
+      </div>
+      <div class="detail-row-text">
+        <mat-form-field>
+          <mat-label>Ime i Prezime</mat-label>
+          <input matInput placeholder="Name" [(ngModel)]="contactForm.ime" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="ikona">
+        <i class="material-icons" style="margin-top: 1.5px;">phone</i>
+      </div>
+      <div class="detail-row-text">
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefonski Broj</mat-label>
+          <span matPrefix>+385 &nbsp;</span>
+          <input type="tel" matInput placeholder="Phone Number"  [(ngModel)]="contactForm.telefonskiBroj">
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="detail-row">
+      <div class="ikona">
+        <i class="material-icons" style="margin-top: 1.5px;">email</i>
+      </div>
+      <div class="detail-row-text">
+        <mat-form-field>
+          <mat-label>Email adresa</mat-label>
+          <input matInput placeholder="Email Addresse" [(ngModel)]="contactForm.email" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="ikona">
+        <i class="material-icons" style="margin-top: 1.5px;">cake</i>
+      </div>
+      <div class="detail-row-text">
+        <mat-form-field class="example-full-width">
+          <mat-label>Opis</mat-label>
+          <input matInput #message maxlength="256" placeholder="Birthday"  [(ngModel)]="contactForm.opis">
+          <mat-hint align="start"><strong>Dodatne informacije</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="example-button-row">
+      <button mat-raised-button (click)="saveContact()"
+        style="float:right; margin-right: 1em; margin-top: 1.5em;background-color:cornflowerblue;"><i
+          class="material-icons" style="margin-right: 0.5em;">save</i>Spremi</button>
+    </div>

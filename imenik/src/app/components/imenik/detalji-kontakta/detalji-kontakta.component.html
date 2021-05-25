@@ -1,1 +1,80 @@
-<p>detalji-kontakta works!</p>
+<div *ngIf="kontakt">
+  <div style="background-color: rgb(241, 233, 233); padding-bottom: 2rem;">
+    <app-back-button></app-back-button>
+    <!-- <button mat-button style="color: cornflowerblue; float: right; margin-top: 15em; float: left;">Edit</button> -->
+    <div>
+      <div
+        style="width: 50px; height: 50px;border-radius: 51%;overflow: hidden;border: 2px solid #2e2e2e;margin: auto;">
+        <img [src]="'https://robohash.org/R' + kontaktID + '.png?set=set5&size=150x150'" style="margin: -50px 0 0 -50px"
+          alt="">
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 0.5em; font-size: 2rem;">
+      {{ kontakt.ime}} {{kontakt.prezime}}
+    </div>
+    <div style="text-align: center; margin-top: 0.5em; font-size: 1.5rem; color: #aaa; font-weight: bold;">
+      (385) {{ kontakt.telefon[0].telefon}}
+    </div>
+  </div>
+  <p style="color: rgb(184, 177, 177); margin: 0.5em">OTHER DETAILS</p>
+
+  <!-- Telefon -->
+  <div class="detail-row">
+    <div class="ikona">
+      <i class="material-icons" style="margin-top: 1.5px;">phone</i>
+    </div>
+    <div class="detail-row-text">
+      <div class="label">Telefon</div>
+      <div class="info">
+        <span *ngFor="let tel of kontakt.telefon; let l = last">(385) {{tel.telefon}}<span *ngIf="!l">, </span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="detail-row">
+    <div class="ikona">
+      <i class="material-icons" style="margin-top: 1.5px;">email</i>
+    </div>
+    <div class="detail-row-text">
+      <div class="label">Email</div>
+      <div class="info">
+        <span *ngFor="let email of kontakt.email; let l = last">{{email.email}}<span *ngIf="!l">,</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opis -->
+  <div class="detail-row">
+    <div class="ikona">
+      <i class="material-icons" style="margin-top: 1.5px;">cake</i>
+    </div>
+    <div class="detail-row-text">
+      <div class="label">Birthday</div>
+      <div class="info">{{kontakt.opis}}</div>
+    </div>
+  </div>
+
+  <div class="example-button-row">
+    <div class="example-flex-container">
+      <button mat-mini-fab aria-label="Example icon button with a menu icon"
+        style="background-color: rgb(11, 112, 11); color: white; margin-top: 8em; margin-left: 0.5em;">
+        <mat-icon>phone</mat-icon>
+      </button>
+      <button mat-mini-fab aria-label="Example icon button with a menu icon"
+        style="background-color: rgb(219, 189, 14); color: white; margin-top: 8em; float: right; margin-left: 1em; margin-right: 1em">
+        <mat-icon>mail</mat-icon>
+      </button>
+      <button mat-mini-fab aria-label="Example icon button with a menu icon"
+        style="background-color: rgb(129, 167, 238); color: white; margin-top: 8em; float: right;">
+        <mat-icon>message</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="example-box" cdkDragLockAxis="x" cdkDrag>
+          I can only be dragged left/right
+        </div> -->

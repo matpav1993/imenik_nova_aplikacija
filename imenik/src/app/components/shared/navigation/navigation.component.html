@@ -1,14 +1,16 @@
-<mat-toolbar class="example-toolbar">
-    <mat-toolbar-row  class="example-toolbar-row">
+<div class="navbar-holder">
+    <div>
+        <span style="font-size: 2em;position: fixed;top:30px;">Contacts</span>
+        <button mat-button style="color: cornflowerblue; float: right;margin-right: 40px;" (click)="addNewContact()">+ Add New</button>
+    </div>
 
-        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button> -->
-        <span class="example-spacer"></span>
-        <span>Contacts</span>
-
-        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [class.d-none]="!jeUlogiran">
-            <mat-icon>search</mat-icon> -->
-        <!-- </button> -->
-    </mat-toolbar-row>
-</mat-toolbar>
+    <div>
+        <mat-form-field class="filter" style="width: 90% !important;">
+            <mat-label>
+                <mat-icon>search</mat-icon>Search by name
+            </mat-label>
+            <input matInput (input)="searchKeyUp($event)" placeholder="" #input> 
+            <!-- (keyup)="applyFilter($event)" -->
+        </mat-form-field>
+    </div>
+</div>

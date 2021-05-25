@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 // import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Kontakt } from './models/kontakt.model';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +39,11 @@ export class ApiService {
     });
   }
 
-  postKontakt(kontakt: Kontakt): Observable<void> {
-    return this.http.post<any>(this.url + 'kontakti' + kontakt, {
+  postKontakt(kontakt): Observable<void> {
+    let params = new HttpParams();
+    params = params.append(kontakt, kontakt);
+
+    return this.http.post<any>(this.url + 'kontakti', kontakt, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
@@ -55,51 +58,71 @@ export class ApiService {
     });
   }
 
+  getTelefoni(): Observable<any> {
+    return this.http.get<any>(this.url + 'telefon', {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+
   getTelefon(id: number): Observable<any> {
-    return this.http.get<any>(this.url + 'telefon?id=eq.' + id, {
+    return this.http.get<any>(this.url + 'telefon?kontakti_id=eq.' + id, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
     });
 
   }
-    deleteTelefon(id: number): Observable<void> {
-      return this.http.delete<any>(this.url + 'telefon?id=eq.' + id, {
-        headers: new HttpHeaders({
-          apikey: this.apiKey,
-        })
-      });
-    }
-    postTelefon(telefonskiBroj: string): Observable<void> {
-      return this.http.post<any>(this.url + 'telefon' + telefonskiBroj, {
-        headers: new HttpHeaders({
-          apikey: this.apiKey,
-        })
-      });
-    }
-      putTelefon(id: number, telefonskiBroj: string): Observable<void> {
-        return this.http.put<any>(this.url + 'telefon?id=eq.' + id, telefonskiBroj, {
-          headers: new HttpHeaders({
-            apikey: this.apiKey,
-          })
-        });
-}
 
-getEmail(id: number): Observable<any> {
-  return this.http.get<any>(this.url + 'email?id=eq.' + id, {
-    headers: new HttpHeaders({
-      apikey: this.apiKey,
-    })
-  });
+  deleteTelefon(id: number): Observable<void> {
+    return this.http.delete<any>(this.url + 'telefon?kontakti_id=eq.' + id, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
 
-}
+  postTelefon(telefonskiBroj: string): Observable<void> {
+    return this.http.post<any>(this.url + 'telefon' + telefonskiBroj, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+
+  putTelefon(id: number, telefonskiBroj: string): Observable<void> {
+    return this.http.put<any>(this.url + 'telefon?kontakti_id=eq.' + id, telefonskiBroj, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+
+  getEmail(id: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('id', 'eq.' + id);
+
+    return this.http.get<any>(this.url + 'email', {
+      params: params,
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+
   deleteEmail(id: number): Observable<void> {
-    return this.http.delete<any>(this.url + 'email?id=eq.' + id, {
+    let params = new HttpParams();
+    params = params.append('id', 'eq.' + id);
+
+    return this.http.delete<any>(this.url + 'email', {
+      params: params,
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
     });
   }
+
   postEmail(email: string): Observable<void> {
     return this.http.post<any>(this.url + 'email' + email, {
       headers: new HttpHeaders({
@@ -107,11 +130,11 @@ getEmail(id: number): Observable<any> {
       })
     });
   }
-    putEmail(id: number, email: string): Observable<void> {
-      return this.http.put<any>(this.url + 'email?id=eq.' + id, email, {
-        headers: new HttpHeaders({
-          apikey: this.apiKey,
-        })
-      });
-    }
+  putEmail(id: number, email: string): Observable<void> {
+    return this.http.put<any>(this.url + 'email?kontakti_id=eq.' + id, email, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
   }
+}

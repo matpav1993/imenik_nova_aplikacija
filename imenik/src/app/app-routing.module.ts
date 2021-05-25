@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dodaj', component: DodajKontaktComponent },
-  { path: 'uredi', component: UrediKontaktComponent },
-  { path: 'detalji', component: DetaljiKontaktaComponent },
+  { path: 'uredi/:id', component: UrediKontaktComponent },
+  { path: 'detalji/:id', component: DetaljiKontaktaComponent },
   { path: 'popis', component: PopisKontaktaComponent },
   { path: '*', component: HomeComponent },
 ];

@@ -1,14 +1,25 @@
-<ng-container >
-<mat-card>
+<div>
+  <app-navigation (searchInputChange)="searchInputChange($event)"></app-navigation>
+</div>
+<mat-list role="list" class="lista" style="width: 100% !important;margin-top: 105px;">
+  <mat-list-item [routerLink]="'/detalji/' + k.id" class="w-10" *ngFor="let k of Kontakti" role="Kontakti" style="width: 100% !important;">
+    <div style="width: 20%;display: inline-block;">
+      <div mat-line>
+        <div style="width: 50px; height: 50px;border-radius: 51%;overflow: hidden;border: 2px solid #2e2e2e;">
+          <img [src]="'https://robohash.org/R' + k.id + '.png?set=set5&size=150x150'" style="margin: -50px 0 0 -50px" alt="">
+        </div>
+      </div>
+    </div>
+    <div style="width: 80%;display: inline-block;">
+      <div mat-line>
+        {{k.ime}} {{k.prezime}}
+      </div>
+      <div mat-line *ngFor="let tel of k.telefoni">
+        <matPrefix matPrefix style="color: rgb(184, 177, 177);">(385) {{tel.telefon}}</matPrefix>
+        <!-- <a mat-button [href]="'tel:' + tel.telefon">{{tel.telefon}}</a> -->
+      </div>
+    </div>
 
-<mat-list role="list" >
-  <mat-list-item class="w-10" *ngFor="let Kontakti of Kontakti" role="Kontakti">{{Kontakti?.ime + ' ' + Kontakti?.prezime}}</mat-list-item>
+    
+  </mat-list-item>
 </mat-list>
-
-<!-- <mat-list role="list" >
-  <mat-list-item class="w-10" *ngFor="let Telefon of Telefon" role="Telefon">{{Telefon?.kontakti_id}}</mat-list-item>
-</mat-list> -->
-
-</mat-card>
-</ng-container>
-

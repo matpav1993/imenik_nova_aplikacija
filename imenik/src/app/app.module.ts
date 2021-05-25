@@ -14,6 +14,9 @@ import { UrediKontaktComponent } from './components/imenik/uredi-kontakt/uredi-k
 import { DetaljiKontaktaComponent } from './components/imenik/detalji-kontakta/detalji-kontakta.component';
 import { HomeComponent } from './components/imenik/home/home.component';
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -25,14 +28,16 @@ import { NavigationComponent } from './components/shared/navigation/navigation.c
     UrediKontaktComponent,
     DetaljiKontaktaComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,18 +21,6 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    this.api.getKontakt(2)
-      // tslint:disable-next-line: deprecation
-      .subscribe(data => {
-      console.log(data);
-    });
-
-    this.api.getKontakti()
-      // tslint:disable-next-line: deprecation
-      .subscribe(data => {
-      this.kontakti = data;
-    });
-
 
 
     // Getting contacts
