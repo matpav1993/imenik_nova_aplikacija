@@ -36,20 +36,20 @@ export class DodajKontaktComponent implements OnInit {
   }
 
   saveContact() {
-const data = {
-  ime: this.contactForm.ime,
-  prezime: this.contactForm.prezime,
-  opis: this.contactForm.opis
+    const data = {
+      ime: this.contactForm.ime,
+      prezime: this.contactForm.prezime,
+      opis: this.contactForm.opis
 
-}
+    }
 
 
     this.apiService.postKontakt(data)
       .subscribe(x => {
         console.log(x);
 
-        
-  this.router.navigate(['/popis']);
+
+        this.router.navigate(['/popis']);
         // this.apiService.postEmail();
         // this.apiService.postTelefon();
       });
