@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +12,7 @@ export class NavigationComponent implements OnInit {
 
   @Output() searchInputChange: EventEmitter<string> = new EventEmitter();
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
 
