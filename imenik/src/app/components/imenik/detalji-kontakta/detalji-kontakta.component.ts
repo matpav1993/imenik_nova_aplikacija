@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MAT_BUTTON_TOGGLE_DEFAULT_OPTIONS } from '@angular/material/button-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
@@ -45,6 +46,9 @@ export class DetaljiKontaktaComponent implements OnInit {
       // });
       // this.kontakt = x.kontakti;
     });
-
   }
+  editContact(){
+    this.router.navigate(['/uredi/:id']);
+  }
+  
 }
