@@ -1,7 +1,5 @@
-// import { Todo } from './models/todo.model';
 import { Injectable } from '@angular/core';
-// import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Kontakt } from './models/kontakt.model';
+import { Kontakt } from '../models/kontakt.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 

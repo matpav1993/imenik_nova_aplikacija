@@ -9,7 +9,6 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class NavigationComponent implements OnInit {
 
-  jeUlogiran: boolean = false;
   datasource: any;
 
   @Output() searchInputChange: EventEmitter<string> = new EventEmitter();
@@ -18,8 +17,6 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //provjeri jeli ulogiran
-    this.jeUlogiran = this.accountService.jeUlogiran;
   }
 
   searchKeyUp(event) {

@@ -1,13 +1,9 @@
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-// import { KontaktiService } from 'src/app/services/kontakti.service';
-// import { MatPaginator } from '@angular/material/paginator';
-// import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ApiService } from 'src/app/api.service';
-import { Kontakt } from 'src/app/models/kontakt.model';
-import { forkJoin, observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-popis-kontakta',
@@ -16,8 +12,6 @@ import { forkJoin, observable } from 'rxjs';
 })
 export class PopisKontaktaComponent implements OnInit, AfterViewInit {
   [x: string]: any;
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort;
   api: ApiService;
 
   displayedColumns: string[] = ['ime', 'prezime'];
@@ -31,7 +25,6 @@ export class PopisKontaktaComponent implements OnInit, AfterViewInit {
   constructor(private ApiService: ApiService, private router: Router, public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
-    //   this.dataSource.sort = this.sort;
   }
 
 
@@ -40,11 +33,10 @@ export class PopisKontaktaComponent implements OnInit, AfterViewInit {
   }
 
   searchInputChange(keyword) {
-    // console.log(event);
     this.Kontakti = this.SviKontakti
       .filter(kontakt => kontakt.ime.toLowerCase().includes(keyword.toLowerCase()) ||
-      kontakt.prezime.toLowerCase().includes(keyword.toLowerCase()));
-    
+        kontakt.prezime.toLowerCase().includes(keyword.toLowerCase()));
+
   }
 
   getContactsWithPhones() {
@@ -60,5 +52,6 @@ export class PopisKontaktaComponent implements OnInit, AfterViewInit {
       this.Kontakti = x.kontakti;
       this.SviKontakti = x.kontakti;
     });
-    
-}}
+
+  }
+}

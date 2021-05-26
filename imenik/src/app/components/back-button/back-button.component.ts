@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './back-button.component.html',
   styleUrls: ['./back-button.component.scss']
 })
-export class BackButtonComponent{
+export class BackButtonComponent {
 
   constructor(private router: Router) { }
 
@@ -14,7 +14,7 @@ export class BackButtonComponent{
   btnBackClicked(): void {
     this.router.navigate(['/popis']);
 
-}
+  }
 
 
 }
