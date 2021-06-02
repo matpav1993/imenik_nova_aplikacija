@@ -47,7 +47,7 @@ export class DetaljiKontaktaComponent implements OnInit {
     });
   }
   editContact(){
-    this.router.navigate(['/uredi/:id']);
+    this.router.navigate(['/uredi/', this.kontaktID]);
   }
   
 }

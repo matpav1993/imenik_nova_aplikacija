@@ -13,7 +13,7 @@ import { DetaljiKontaktaComponent } from './components/imenik/detalji-kontakta/d
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { FormsModule } from '@angular/forms';
-
+import { FormaTestComponent } from './components/forma-test/forma-test.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     UrediKontaktComponent,
     DetaljiKontaktaComponent,
     NavigationComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    FormaTestComponent
   ],
   imports: [
     BrowserModule,

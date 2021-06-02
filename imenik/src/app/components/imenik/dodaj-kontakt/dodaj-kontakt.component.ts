@@ -10,71 +10,65 @@ import { Kontakt } from 'src/app/models/kontakt.model';
 })
 export class DodajKontaktComponent implements OnInit {
 
-
   contactForm: Kontakt = {
     id: null,
-    email: "",
+    email: [""],
+    punoIme: "",
     ime: "",
     opis: "",
     prezime: "",
-    telefonskiBroj: ""
+    telefonskiBroj: [""]
   };
+
 
 
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
 
-    // this.firstFormGroup = this.formBuilder.group({
-
-    //   ime: new FormControl('', [Validators.required]),
-    //   prezime: new FormControl('', [Validators.required]),
-    //   telefonskiBroj: new FormControl('', [Validators.required]),
-    //   email: new FormControl('', [Validators.required]),
-    //   opis: new FormControl('', []),
-    // });
-
   }
 
-  saveContact() {
+  saveContact(value): any {
+    let punoIme = this.contactForm.punoIme.split(' ');
+    this.contactForm.ime = punoIme.shift();
+    this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, "");
     const data = {
       ime: this.contactForm.ime,
       prezime: this.contactForm.prezime,
       opis: this.contactForm.opis
-
     }
 
+    const objKeys = Object.keys(value);
 
     this.apiService.postKontakt(data)
-      .subscribe(x => {
-        console.log(x);
-
-
+      .subscribe(data => {
+        if (data) {
+          data.forEach(element => {
+            let contact_id = element.id;
+            objKeys.forEach(key => {
+              if (key.startsWith('telefonskiBroj-')) {
+                this.apiService.postTelefon(contact_id, value[key]).subscribe();
+              }
+              if (key.startsWith('email-')) {
+                this.apiService.postEmail(contact_id, value[key]).subscribe();
+              }
+            });
+          });
+        }
         this.router.navigate(['/popis']);
-        // this.apiService.postEmail();
-        // this.apiService.postTelefon();
       });
-    ;
   }
 
-  // btnSave(): void {
 
-  //     putNewContact() {
-
-  //       forkJoin({
-  //         kontakti: this.ApiService.putKontakti(),
-  //         telefoni: this.ApiService.putTelefoni()
-  //       }).subscribe(x => {
-  //         x.kontakti.forEach(kontakt => {
-  //           kontakt.telefoni = x.telefoni.filter(tel => tel.kontakti_id === kontakt.id);
-  //         });
-
-  //         this.Kontakti = x.kontakti;
-  //       });
-
-
-  // this.ApiService.putKontakt(kontakt);
-
-  // this.router.navigate(['/popis']);
+  addMorePhones(event) {
+    event.stopPropagation();
+    this.contactForm.telefonskiBroj.push("");
+    return false;
+  }
+  clicked(event) {
+    event.stopPropagation();
+    this.contactForm.email.push("");
+    return false;
+  }
 }
 

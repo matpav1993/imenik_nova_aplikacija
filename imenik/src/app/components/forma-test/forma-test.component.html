@@ -1,0 +1,52 @@
+
+
+<div >
+    <form #f="ngForm" (ngSubmit)="formSubmit(f.value)" spellcheck="false">
+        <div>
+            <mat-form-field>
+                <input autofocus matInput #ime="ngModel" [ngModel]="data.ime" placeholder="Ime" type="text" name="ime" required maxlength="100">
+                <mat-error *ngIf="ime.errors && ime.errors.required">Polje je obavezno</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input autofocus matInput #prezime="ngModel" [ngModel]="data.prezime" placeholder="Prezime" type="text" name="prezime" required maxlength="100">
+                <mat-error *ngIf="prezime.errors && prezime.errors.required">Polje je obavezno</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input autofocus matInput #opis="ngModel" [ngModel]="data.opis" placeholder="Opis" type="text" name="opis" required maxlength="100">
+                <mat-error *ngIf="opis.errors && opis.errors.required">Polje je obavezno</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <div *ngFor="let telefon of data.telefon; let i = index">
+                <mat-form-field>
+                    <input autofocus matInput #telefon="ngModel" [ngModel]="telefon" placeholder="Telefon" type="text" name="telefon-{{i}}" required maxlength="100">
+                    <mat-error *ngIf="telefon.errors && telefon.errors.required">Polje je obavezno</mat-error>
+                </mat-form-field>
+                <button type="button" (click)="ukloniTelefon(i)">ukloni telefon</button>
+            </div>
+        </div>
+        <div>
+            <div *ngFor="let email of data.email; let i = index">
+                <mat-form-field>
+                    <input autofocus matInput #email="ngModel" [ngModel]="email" placeholder="Email" type="text" name="email-{{i}}" required maxlength="100">
+                    <mat-error *ngIf="email.errors && email.errors.required">Polje je obavezno</mat-error>
+                </mat-form-field>
+                <button type="button" (click)="ukloniEmail(i)">ukloni email</button>
+            </div>
+        </div>
+
+
+
+
+        <button type="button" (click)="dodajNoviTel()">dodaj tel</button>
+        <button type="button" (click)="dodajNoviEmail()">dodaj email</button>
+        <button [disabled]="f.invalid" type="submit">spremi</button>
+
+
+    </form>
+
+</div>

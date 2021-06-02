@@ -25,6 +25,7 @@ export class ApiService {
     return this.http.get<any>(this.url + 'kontakti?id=eq.' + id, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
+        prefer: 'return=representation'
       })
     });
   }
@@ -37,13 +38,11 @@ export class ApiService {
     });
   }
 
-  postKontakt(kontakt): Observable<void> {
-    let params = new HttpParams();
-    params = params.append(kontakt, kontakt);
-
+  postKontakt(kontakt): Observable<any> {
     return this.http.post<any>(this.url + 'kontakti', kontakt, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
+        prefer: 'return=representation'
       })
     });
   }
@@ -65,9 +64,9 @@ export class ApiService {
   }
 
   getTelefon(id: number): Observable<any> {
-    return this.http.get<any>(this.url + 'telefon?kontakti_id=eq.' + id, {
+    return this.http.get<any>(this.url + 'telefon?select=telefon,id&kontakti_id=eq.' + id, {
       headers: new HttpHeaders({
-        apikey: this.apiKey,
+        apikey: this.apiKey
       })
     });
 
@@ -81,48 +80,38 @@ export class ApiService {
     });
   }
 
-  postTelefon(telefonskiBroj: string): Observable<void> {
-    return this.http.post<any>(this.url + 'telefon' + telefonskiBroj, {
+  postTelefon(kontakti_id, telefon): Observable<any> {
+    return this.http.post<any>(this.url + 'telefon', {
+      kontakti_id, telefon
+    }, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
-      })
-    });
-  }
-
-  putTelefon(id: number, telefonskiBroj: string): Observable<void> {
-    return this.http.put<any>(this.url + 'telefon?kontakti_id=eq.' + id, telefonskiBroj, {
-      headers: new HttpHeaders({
-        apikey: this.apiKey,
+        prefer: 'return=representation'
       })
     });
   }
 
   getEmail(id: number): Observable<any> {
-    let params = new HttpParams();
-    params = params.append('id', 'eq.' + id);
-
-    return this.http.get<any>(this.url + 'email', {
-      params: params,
+    return this.http.get<any>(this.url + 'email?select=email,id&kontakti_id=eq.' + id, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
+        prefer: 'return=representation'
       })
     });
   }
 
   deleteEmail(id: number): Observable<void> {
-    let params = new HttpParams();
-    params = params.append('id', 'eq.' + id);
-
-    return this.http.delete<any>(this.url + 'email', {
-      params: params,
+    return this.http.delete<any>(this.url + 'email?id=eq.' + id, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
     });
   }
 
-  postEmail(email: string): Observable<void> {
-    return this.http.post<any>(this.url + 'email' + email, {
+  postEmail(kontakti_id,email): Observable<any> {
+    return this.http.post<any>(this.url + 'email', {
+      kontakti_id, email
+    }, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
@@ -130,6 +119,28 @@ export class ApiService {
   }
   putEmail(id: number, email: string): Observable<void> {
     return this.http.put<any>(this.url + 'email?kontakti_id=eq.' + id, email, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+
+  }
+  patchEmail(id: number, email: string): Observable<any> {
+    return this.http.patch<any>(this.url + 'email?kontakti_id=eq.' + id, email, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+  patchTelefon(id: number, telefon: string): Observable<any> {
+    return this.http.patch<any>(this.url + 'telefon?kontakti_id=eq.' + id, telefon, {
+      headers: new HttpHeaders({
+        apikey: this.apiKey,
+      })
+    });
+  }
+  patchKontakt(id: number, kontakt): Observable<any> {
+    return this.http.patch<any>(this.url + 'kontakti?id=eq.' + id, kontakt, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
