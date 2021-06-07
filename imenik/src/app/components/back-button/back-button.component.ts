@@ -9,12 +9,7 @@ import { Router } from '@angular/router';
 export class BackButtonComponent {
 
   constructor(private router: Router) { }
-
-
   btnBackClicked(): void {
     this.router.navigate(['/popis']);
-
   }
-
-
 }

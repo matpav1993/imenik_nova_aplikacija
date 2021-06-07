@@ -12,12 +12,12 @@ export class DodajKontaktComponent implements OnInit {
 
   contactForm: Kontakt = {
     id: null,
-    email: [""],
-    punoIme: "",
-    ime: "",
-    opis: "",
-    prezime: "",
-    telefonskiBroj: [""]
+    email: [''],
+    punoIme: '',
+    ime: '',
+    opis: '',
+    prezime: '',
+    telefonskiBroj: ['']
   };
 
 
@@ -29,7 +29,7 @@ export class DodajKontaktComponent implements OnInit {
   }
 
   saveContact(value): any {
-    let punoIme = this.contactForm.punoIme.split(' ');
+    const punoIme = this.contactForm.punoIme.split(' ');
     this.contactForm.ime = punoIme.shift();
     this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, "");
     const data = {
@@ -41,10 +41,12 @@ export class DodajKontaktComponent implements OnInit {
     const objKeys = Object.keys(value);
 
     this.apiService.postKontakt(data)
+      // tslint:disable-next-line: no-shadowed-variable
       .subscribe(data => {
         if (data) {
           data.forEach(element => {
-            let contact_id = element.id;
+            // tslint:disable-next-line: variable-name
+            const contact_id = element.id;
             objKeys.forEach(key => {
               if (key.startsWith('telefonskiBroj-')) {
                 this.apiService.postTelefon(contact_id, value[key]).subscribe();
@@ -60,12 +62,12 @@ export class DodajKontaktComponent implements OnInit {
   }
 
 
-  addMorePhones(event) {
+  addMorePhones(event): any {
     event.stopPropagation();
     this.contactForm.telefonskiBroj.push("");
     return false;
   }
-  clicked(event) {
+  clicked(event): any {
     event.stopPropagation();
     this.contactForm.email.push("");
     return false;

@@ -28,7 +28,7 @@ export class DetaljiKontaktaComponent implements OnInit {
     });
   }
 
-  getContactsWithPhonesandEmail(kontaktID) {
+  getContactsWithPhonesandEmail(kontaktID): void {
     forkJoin({
       contact: this.apiService.getKontakt(this.kontaktID),
       phone: this.apiService.getTelefon(this.kontaktID),
@@ -39,15 +39,9 @@ export class DetaljiKontaktaComponent implements OnInit {
       this.kontakt.email = x.email;
 
       console.log(this.kontakt);
-      // x.kontakti.forEach(kontakt => {
-      //   kontakt.telefoni = x.telefoni.filter(tel => tel.kontakti_id === kontakt.id),
-      //     kontakt.email = x.email.filter(email => email.kontakti_id === kontakt.id);
-      // });
-      // this.kontakt = x.kontakti;
     });
   }
-  editContact(){
+  editContact(): void {
     this.router.navigate(['/uredi/', this.kontaktID]);
   }
-  
 }

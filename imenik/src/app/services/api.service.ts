@@ -80,7 +80,8 @@ export class ApiService {
     });
   }
 
-  postTelefon(kontakti_id, telefon): Observable<any> {
+  // tslint:disable-next-line: variable-name
+  postTelefon(kontakti_id: number, telefon: string): Observable<any> {
     return this.http.post<any>(this.url + 'telefon', {
       kontakti_id, telefon
     }, {
@@ -101,14 +102,15 @@ export class ApiService {
   }
 
   deleteEmail(id: number): Observable<void> {
-    return this.http.delete<any>(this.url + 'email?id=eq.' + id, {
+    return this.http.delete<any>(this.url + 'email?kontakti_id=eq.' + id, {
       headers: new HttpHeaders({
         apikey: this.apiKey,
       })
     });
   }
 
-  postEmail(kontakti_id,email): Observable<any> {
+  // tslint:disable-next-line: variable-name
+  postEmail(kontakti_id: number, email: string): Observable<any> {
     return this.http.post<any>(this.url + 'email', {
       kontakti_id, email
     }, {

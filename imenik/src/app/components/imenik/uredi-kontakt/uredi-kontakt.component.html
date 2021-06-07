@@ -1,7 +1,5 @@
-
 <div mat-line style="background-color: rgb(241, 233, 233);">
   <app-back-button></app-back-button>
-
   <form #f="ngForm" (ngSubmit)="saveContact(f.value)" spellcheck="false">
     <div style="background-color: rgb(255, 255, 255);">
       <div
@@ -9,7 +7,6 @@
         <i class="material-icons">image</i>
         <img [src]=" " alt="">
       </div>
-
       <div class="detail-row" style="padding-top: 2em;">
         <div class="ikona">
           <i class="material-icons">account_circle</i>
@@ -21,40 +18,44 @@
           </mat-form-field>
         </div>
       </div>
-
-      <div class="detail-row" *ngFor="let telefonskiBroj of contactForm.telefonskiBroj; let i = index">
+      <div class="detail-row">
         <div class="ikona">
           <i class="material-icons">phone</i>
         </div>
         <div class="detail-row-text" style="margin-left: 3em;">
-          <mat-form-field class="example-full-width" style=" border: 1px solid #2e2e2e; width: 300px;">
-            <mat-label>Telefonski Broj</mat-label>
-            <span matPrefix>+385 &nbsp;</span>
-            <input autofocus matInput placeholder="Phone Number" type="text" [ngModel]="telefonskiBroj" required
-              name="telefonskiBroj-{{ i }}">
-          </mat-form-field>
-          <button mat-button
+          <div *ngFor="let telefonskiBroj of contactForm.telefonskiBroj; trackBy:trackBy">
+            <mat-form-field class="example-full-width" style=" border: 1px solid #2e2e2e; width: 300px;">
+              <mat-label>Telefonski Broj</mat-label>
+              <span matPrefix>+385 &nbsp;</span>
+              <input matInput placeholder="Phone Number" type="text" [ngModel]="telefonskiBroj.value" required
+                name="telefonskiBroj-{{ telefonskiBroj.fid }}">
+            </mat-form-field>
+            <button type="button" style="position: absolute;right: 32px;"
+              (click)="delPhone(telefonskiBroj.fid)">obrisi</button>
+          </div>
+          <button mat-button type="button"
             style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start;"
-            (click)=addMorePhones($event)> +Add more</button>
+            (click)="addMorePhones()"> +Add more</button>
         </div>
       </div>
-
-      <div class="detail-row" *ngFor="let email of contactForm.email; let i = index">
+      <div class="detail-row">
         <div class="ikona">
           <i class="material-icons">email</i>
         </div>
         <div class="detail-row-text" style="margin-left: 3em;">
-          <mat-form-field style="border: 1px solid #2e2e2e; width: 300px;">
-            <mat-label>Email adresa</mat-label>
-            <input autofocus matInput #email="ngModel" [ngModel]="email" placeholder="Email" type="text"
-              name="email-{{i}}" required maxlength="100">
-          </mat-form-field>
-          <button mat-button
+          <div *ngFor="let email of contactForm.email; trackBy:trackBy">
+            <mat-form-field style="border: 1px solid #2e2e2e; width: 300px;">
+              <mat-label>Email adresa</mat-label>
+              <input autofocus matInput #email="ngModel" [ngModel]="email.value" placeholder="Email" type="text"
+                name="email-{{email.fid}}" required maxlength="100">
+            </mat-form-field>
+            <button type="button" style="position: absolute;right: 32px;" (click)="delEmail(email.fid)">obrisi</button>
+          </div>
+          <button mat-button type="button"
             style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start;"
-            (click)=clicked($event)> +Add more</button>
+            (click)=addMoreEmails()> +Add more</button>
         </div>
       </div>
-
       <div class="detail-row">
         <div class="ikona">
           <i class="material-icons">cake</i>

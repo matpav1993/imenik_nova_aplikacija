@@ -1,4 +1,4 @@
-[<div>
+<div>
   <app-navigation (searchInputChange)="searchInputChange($event)"></app-navigation>
 </div>
 <mat-list role="list" class="lista" style="width: 100% !important;margin-top: 105px;">
@@ -18,10 +18,7 @@
       </div>
       <div mat-line *ngFor="let tel of k.telefoni">
         <matPrefix matPrefix style="color: rgb(184, 177, 177);">(385) {{tel.telefon}}</matPrefix>
-        <!-- <a mat-button [href]="'tel:' + tel.telefon">{{tel.telefon}}</a> -->
       </div>
     </div>
-
-
   </mat-list-item>
-</mat-list>]
+</mat-list>

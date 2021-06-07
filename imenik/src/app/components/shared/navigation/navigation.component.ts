@@ -18,12 +18,12 @@ export class NavigationComponent implements OnInit {
 
   }
 
-  searchKeyUp(event) {
+  searchKeyUp(event): void {
     this.searchInputChange.emit(event.target.value);
   }
 
   addNewContact(): void {
-    this.router.navigate(['/dodaj/']);;
+    this.router.navigate(['/dodaj/']);
   }
 
 }
