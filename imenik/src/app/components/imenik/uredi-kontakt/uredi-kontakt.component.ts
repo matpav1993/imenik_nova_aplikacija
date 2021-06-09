@@ -84,7 +84,7 @@ export class UrediKontaktComponent implements OnInit {
       }
     });
   }
-  async saveContact(value): Promise<void> {
+  async asyncSaveContact(value): Promise<void> {
 
     console.log(value);
 

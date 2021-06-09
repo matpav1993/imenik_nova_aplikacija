@@ -13,6 +13,7 @@ import { DetaljiKontaktaComponent } from './components/imenik/detalji-kontakta/d
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { FormsModule } from '@angular/forms';
+import { DodajUrediKontaktComponent } from './ui/dodaj-uredi-kontakt/dodaj-uredi-kontakt.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     DetaljiKontaktaComponent,
     NavigationComponent,
     BackButtonComponent,
+    DodajUrediKontaktComponent,
   ],
   imports: [
     BrowserModule,
