@@ -7,7 +7,7 @@
         <i class="material-icons">image</i>
         <img [src]=" " alt="">
       </div>
-      <div class="detail-row" style="padding-top: 2em;">
+      <div class="detail-row">
         <div class="ikona">
           <i class="material-icons">account_circle</i>
         </div>
@@ -30,8 +30,8 @@
               <input matInput placeholder="Phone Number" type="text" [ngModel]="telefonskiBroj.value" required
                 name="telefonskiBroj-{{ telefonskiBroj.fid }}">
             </mat-form-field>
-            <button type="button" style="position: absolute;right: 32px;"
-              (click)="delPhone(telefonskiBroj.fid)">obrisi</button>
+            <button mat-mini-fab color="warn" type="button" style="position: absolute;right: 32px; transform: scale(0.7);"
+              (click)="delPhone(telefonskiBroj.fid)"><i class="material-icons">clear</i></button>
           </div>
           <button mat-button type="button"
             style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start;"
@@ -49,7 +49,7 @@
               <input autofocus matInput #email="ngModel" [ngModel]="email.value" placeholder="Email" type="text"
                 name="email-{{email.fid}}" required maxlength="100">
             </mat-form-field>
-            <button type="button" style="position: absolute;right: 32px;" (click)="delEmail(email.fid)">obrisi</button>
+            <button mat-mini-fab color="warn" type="button" style="position: absolute;right: 32px;transform: scale(0.7);" (click)="delEmail(email.fid)"><i class="material-icons">clear</i></button>
           </div>
           <button mat-button type="button"
             style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start;"

@@ -55,7 +55,7 @@ export class UrediKontaktComponent implements OnInit {
       if (res && res.length > 0) {
         this.contactForm.ime = res[0].ime;
         this.contactForm.prezime = res[0].prezime;
-        this.contactForm.punoIme = res[0].ime + ' ' + res[0].prezime;
+        this.contactForm.punoIme = res[0].ime + '' + res[0].prezime;
         this.contactForm.opis = res[0].opis;
       }
     });
@@ -88,7 +88,7 @@ export class UrediKontaktComponent implements OnInit {
 
     console.log(value);
 
-    const punoIme = this.contactForm.punoIme.split(' ');
+    const punoIme = this.contactForm.punoIme.split('');
     this.contactForm.ime = punoIme.shift();
     this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, '');
 

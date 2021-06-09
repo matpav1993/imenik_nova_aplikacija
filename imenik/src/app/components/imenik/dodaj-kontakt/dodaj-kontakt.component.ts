@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Kontakt } from 'src/app/models/kontakt.model';
 
 @Component({
   selector: 'app-dodaj-kontakt',
@@ -10,33 +9,42 @@ import { Kontakt } from 'src/app/models/kontakt.model';
 })
 export class DodajKontaktComponent implements OnInit {
 
-  contactForm: Kontakt = {
-    id: null,
-    email: [''],
-    punoIme: '',
-    ime: '',
-    opis: '',
-    prezime: '',
-    telefonskiBroj: ['']
-  };
-
+  contactForm: {
+    id: number,
+    email: { fid: string, value: string }[],
+    telefonskiBroj: { fid: string, value: string }[],
+    punoIme: string,
+    ime: string,
+    opis: string,
+    prezime: string
+  } = {
+      id: null,
+      email: [],
+      punoIme: '',
+      ime: '',
+      opis: '',
+      prezime: '',
+      telefonskiBroj: []
+    };
 
 
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-
+    const fid = Date.now();
+    this.contactForm.email.push({ fid: fid + '-' + 0, value: '' });
+    this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
   }
 
   saveContact(value): any {
-    const punoIme = this.contactForm.punoIme.split(' ');
+    const punoIme = this.contactForm.punoIme.split('');
     this.contactForm.ime = punoIme.shift();
-    this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, "");
+    this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, '');
     const data = {
       ime: this.contactForm.ime,
       prezime: this.contactForm.prezime,
       opis: this.contactForm.opis
-    }
+    };
 
     const objKeys = Object.keys(value);
 
@@ -60,17 +68,28 @@ export class DodajKontaktComponent implements OnInit {
         this.router.navigate(['/popis']);
       });
   }
-
-
-  addMorePhones(event): any {
-    event.stopPropagation();
-    this.contactForm.telefonskiBroj.push("");
-    return false;
+  trackBy(index: string, item: any): string {
+    return item.fid;
   }
-  clicked(event): any {
-    event.stopPropagation();
-    this.contactForm.email.push("");
-    return false;
+
+  delPhone(fid): void {
+    const idx = this.contactForm.telefonskiBroj.findIndex(x => x.fid === fid);
+    this.contactForm.telefonskiBroj.splice(idx, 1);
+  }
+
+  delEmail(fid): void {
+    const idx = this.contactForm.email.findIndex(x => x.fid === fid);
+    this.contactForm.email.splice(idx, 1);
+  }
+
+  addMorePhones(): void {
+    const fid = Date.now();
+    this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
+  }
+
+  addMoreEmails(): void {
+    const fid = Date.now();
+    this.contactForm.email.push({ fid: fid + '-' + 0, value: '' });
   }
 }
 
