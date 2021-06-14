@@ -32,44 +32,10 @@ export class DialogBrisanjeComponent implements OnInit {
     });
   }
 
-  potvrdiClick() {
-
-    this.apiService.getEmail(this.data.id).subscribe(res => {
-      res.forEach((element) => {
-        console.log(element.id);
-        this.apiService.deleteEmail(element.id).subscribe(data => {
-          console.log(data);
-         });
-      });
-    });
-
-    this.apiService.getTelefon(this.data.id).subscribe(res => {
-      res.forEach((element) => {
-        console.log(element.id);
-        this.apiService.deleteTelefon(element.id).subscribe(data => {
-          console.log(data);
-         });
-      });
-    });
-
-    setTimeout(() => {
-      this.apiService.deleteKontakt(this.data.id)
-        .subscribe(data => {
-          this.dialogRef.close();
-        });
-    }, 2000);
-
-
-    // this.apiService.getTelefon(this.data.id).subscribe(res => {
-    //   res.forEach((element) => {
-    //     this.apiService.deleteTelefon(element.id);
-    //   });
-    // });
-
-
-
-
-
-
+  potvrdiClick(): void {
+    this.dialogRef.close(true);
+  }
+  odustaniClick(): void {
+    this.dialogRef.close(false);
   }
 }
