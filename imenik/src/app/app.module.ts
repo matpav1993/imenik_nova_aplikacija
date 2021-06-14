@@ -14,6 +14,7 @@ import { NavigationComponent } from './components/shared/navigation/navigation.c
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { FormsModule } from '@angular/forms';
 import { DodajUrediKontaktComponent } from './ui/dodaj-uredi-kontakt/dodaj-uredi-kontakt.component';
+import { DialogBrisanjeComponent } from './ui/dialog-brisanje/dialog-brisanje.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DodajUrediKontaktComponent } from './ui/dodaj-uredi-kontakt/dodaj-uredi
     NavigationComponent,
     BackButtonComponent,
     DodajUrediKontaktComponent,
+    DialogBrisanjeComponent,
   ],
   imports: [
     BrowserModule,

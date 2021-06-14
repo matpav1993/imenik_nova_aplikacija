@@ -1,0 +1,6 @@
+<div >
+    <form #f="ngForm" spellcheck="false"></form>
+    <p>{{data.title}}</p>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial >Odustani</button>
+    <button mat-button color="warn" [mat-dialog-close]="true" style="float: right;" (click)="potvrdiClick()">Potvrdi</button>
+</div>

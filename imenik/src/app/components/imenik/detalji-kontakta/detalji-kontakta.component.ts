@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { DialogBrisanjeComponent } from 'src/app/ui/dialog-brisanje/dialog-brisanje.component';
 
 @Component({
   selector: 'app-detalji-kontakta',
@@ -12,11 +15,13 @@ export class DetaljiKontaktaComponent implements OnInit {
 
   kontaktID: number;
   kontakt: any;
+  dataSource: MatTableDataSource<any>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +33,7 @@ export class DetaljiKontaktaComponent implements OnInit {
     });
   }
 
-  getContactsWithPhonesandEmail(kontaktID): void {
+  private getContactsWithPhonesandEmail(kontaktID): void {
     forkJoin({
       contact: this.apiService.getKontakt(this.kontaktID),
       phone: this.apiService.getTelefon(this.kontaktID),
@@ -43,5 +48,15 @@ export class DetaljiKontaktaComponent implements OnInit {
   }
   editContact(): void {
     this.router.navigate(['/uredi/', this.kontaktID]);
+  }
+
+  btnBrisanje(id2: number): void {
+    const dialogRef = this.dialog.open(DialogBrisanjeComponent, {
+      data: { id: id2, title: 'Jeste li sigurni da želite obrisati ovaj kontakt?' }
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      this.router.navigate(['/']);
+    });
   }
 }

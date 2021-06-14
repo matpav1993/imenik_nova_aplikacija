@@ -37,7 +37,7 @@ export class DodajKontaktComponent implements OnInit {
   }
 
   saveContact(value): any {
-    const punoIme = this.contactForm.punoIme.split('');
+    const punoIme = this.contactForm.punoIme.split(' ');
     this.contactForm.ime = punoIme.shift();
     this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, '');
     const data = {

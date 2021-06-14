@@ -50,7 +50,7 @@ export class UrediKontaktComponent implements OnInit {
       }
     });
   }
-  getContactsWithPhonesAndEmail(id: any): void {
+  private getContactsWithPhonesAndEmail(id: any): void {
     this.apiService.getKontakt(id).subscribe(res => {
       if (res && res.length > 0) {
         this.contactForm.ime = res[0].ime;

@@ -10,10 +10,10 @@
           alt="">
       </div>
     </div>
-    <div style="text-align: center; margin-top: 0.5em; font-size: 2rem;">
+    <div  style="text-align: center; margin-top: 0.5em; font-size: 2rem;">
       {{ kontakt.ime}} {{kontakt.prezime}}
     </div>
-    <div style="text-align: center; margin-top: 0.5em; font-size: 1.5rem; color: #aaa; font-weight: bold;">
+    <div *ngIf="kontakt.telefon[0]" style="text-align: center; margin-top: 0.5em; font-size: 1.5rem; color: #aaa; font-weight: bold;">
       (385) {{ kontakt.telefon[0].telefon}}
     </div>
   </div>
@@ -52,6 +52,12 @@
     </div>
   </div>
 
+
+  <div class="detail-row">
+    <div class="dialog">
+  <button mat-flat-button color="warn" style="position:relative;float:left; transform: scale(0.8); margin-left: -1em;margin-bottom: -4em;" (click)= btnBrisanje(kontakt.id)><i class="material-icons">clear</i>Obriši kontakt</button>
+</div>
+</div>
   <div class="example-button-row">
     <div class="example-flex-container">
       <button mat-mini-fab aria-label="Example icon button with a menu icon"
