@@ -8,9 +8,8 @@ import { DodajUrediKontaktComponent } from './ui/dodaj-uredi-kontakt/dodaj-uredi
 
 const routes: Routes = [
   { path: '', component: PopisKontaktaComponent },
-  { path: 'dodaj-uredi/:id', component: DodajUrediKontaktComponent },
-  { path: 'dodaj', component: DodajKontaktComponent },
-  { path: 'uredi/:id', component: UrediKontaktComponent },
+  { path: 'dodaj', component: DodajUrediKontaktComponent },
+  { path: 'uredi/:id', component: DodajUrediKontaktComponent },
   { path: 'detalji/:id', component: DetaljiKontaktaComponent },
   { path: '**', redirectTo: '' }
 ];
