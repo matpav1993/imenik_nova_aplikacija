@@ -37,7 +37,7 @@
     <div class="detail-row-text">
       <div class="label">Email</div>
       <div class="info">
-        <span *ngFor="let email of kontakt.email; let l = last">{{email.email}}<span *ngIf="!l">,</span></span>
+        <span *ngFor="let email of kontakt.email; let l = last">{{email.email}}<span *ngIf="!l">, </span></span>
       </div>
     </div>
   </div>
@@ -60,10 +60,11 @@
 </div>
   <div class="example-button-row">
     <div class="example-flex-container">
-      <button mat-mini-fab aria-label="Example icon button with a menu icon"
-        style="background-color: rgb(11, 112, 11); color: white; margin-top: 8em; margin-left: 0.5em;">
-        <mat-icon>phone</mat-icon>
-      </button>
+      <mat-button-toggle-group  mat-mini-fab
+        style="margin-top: 8em; margin-left: 0.5em;">
+          <mat-button-toggle style="background-color: rgb(11, 112, 11); color: white;"><mat-icon>phone</mat-icon></mat-button-toggle>
+          <mat-button-toggle>Slide to call</mat-button-toggle>
+      </mat-button-toggle-group>
       <button mat-mini-fab aria-label="Example icon button with a menu icon"
         style="background-color: rgb(219, 189, 14); color: white; margin-top: 8em; float: right; margin-left: 1em; margin-right: 1em">
         <mat-icon>mail</mat-icon>

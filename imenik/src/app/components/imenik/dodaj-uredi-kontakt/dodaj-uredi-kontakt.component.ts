@@ -116,10 +116,11 @@ export class DodajUrediKontaktComponent implements OnInit {
       };
 
       const objKeys = Object.keys(value);
-      await this.apiService.patchKontakt(this.kontaktID, data).toPromise();
 
       await this.apiService.deleteTelefon(this.kontaktID).toPromise();
       await this.apiService.deleteEmail(this.kontaktID).toPromise();
+
+      await this.apiService.patchKontakt(this.kontaktID, data).toPromise();
 
       for (const key of objKeys) {
         if (key.startsWith('telefonskiBroj-')) {
@@ -132,7 +133,7 @@ export class DodajUrediKontaktComponent implements OnInit {
       }
     }
     else {
-      const punoIme = this.contactForm.punoIme.split('');
+      const punoIme = this.contactForm.punoIme.split(' ');
       this.contactForm.ime = punoIme.shift();
       this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, '');
       const data = {

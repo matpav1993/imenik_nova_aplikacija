@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DetaljiKontaktaComponent } from './components/imenik/detalji-kontakta/detalji-kontakta.component';
-import { DodajKontaktComponent } from './components/imenik/dodaj-kontakt/dodaj-kontakt.component';
 import { PopisKontaktaComponent } from './components/imenik/popis-kontakta/popis-kontakta.component';
-import { UrediKontaktComponent } from './components/imenik/uredi-kontakt/uredi-kontakt.component';
-import { DodajUrediKontaktComponent } from './ui/dodaj-uredi-kontakt/dodaj-uredi-kontakt.component';
+import { DodajUrediKontaktComponent } from './components/imenik/dodaj-uredi-kontakt/dodaj-uredi-kontakt.component';
 
 const routes: Routes = [
   { path: '', component: PopisKontaktaComponent },
