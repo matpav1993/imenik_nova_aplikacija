@@ -1,6 +1,8 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { element } from 'protractor';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -43,14 +45,15 @@ export class DodajUrediKontaktComponent implements OnInit {
         this.kontaktID = +params.get('id');
         this.getContactsWithPhonesAndEmail(this.kontaktID);
       }
-    });
-
-    const fid = Date.now();
-    this.contactForm.email.push({ fid: fid + '-' + 0, value: '' });
-    this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
+      else {
+        const fid = Date.now();
+        this.contactForm.email.push({ fid: fid + '-' + 0, value: '' });
+        this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
+      }
+    })
   }
 
-   private getContactsWithPhonesAndEmail(id: any): void {
+  private getContactsWithPhonesAndEmail(id: any): void {
     this.apiService.getKontakt(id).subscribe(res => {
       if (res && res.length > 0) {
         this.contactForm.ime = res[0].ime;
@@ -79,28 +82,30 @@ export class DodajUrediKontaktComponent implements OnInit {
         if (res.length < 1) {
           this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
         }
-      }});
-    }
-    trackBy(index: string, item: any): string {
-      return item.fid;
-    }
+      }
+    });
+  }
+  trackBy(index: string, item: any): string {
+    return item.fid;
+  }
 
-    delPhone(fid): void {
-      const idx = this.contactForm.telefonskiBroj.findIndex(x => x.fid === fid);
-      this.contactForm.telefonskiBroj.splice(idx, 1);
-    }
-    delEmail(fid): void {
-      const idx = this.contactForm.email.findIndex(x => x.fid === fid);
-      this.contactForm.email.splice(idx, 1);
-    }
-    addMorePhones(): void {
-      const fid = Date.now();
-      this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
-    }
-    addMoreEmails(): void {
-      const fid = Date.now();
-      this.contactForm.email.push({ fid: fid + '-' + 0, value: '' });
-    }
+  delPhone(fid): void {
+    const idx = this.contactForm.telefonskiBroj.findIndex(x => x.fid === fid);
+    this.contactForm.telefonskiBroj.splice(idx, 1);
+  }
+  delEmail(fid): void {
+    const idx = this.contactForm.email.findIndex(x => x.fid === fid);
+    this.contactForm.email.splice(idx, 1);
+  }
+  addMorePhones(): void {
+    const fid = Date.now();
+    this.contactForm.telefonskiBroj.push({ fid: fid + '-' + 0, value: '' });
+  }
+  addMoreEmails(): void {
+    const fid = Date.now();
+    this.contactForm.email.push({ fid: fid + '-' + 0, value: '' });
+  }
+
   async asyncSaveContact(value): Promise<void> {
 
     if (this.kontaktID != null) {
@@ -133,14 +138,18 @@ export class DodajUrediKontaktComponent implements OnInit {
       }
     }
     else {
+
       const punoIme = this.contactForm.punoIme.split(' ');
       this.contactForm.ime = punoIme.shift();
       this.contactForm.prezime = this.contactForm.punoIme.replace(this.contactForm.ime, '');
+
+
       const data = {
         ime: this.contactForm.ime,
         prezime: this.contactForm.prezime,
         opis: this.contactForm.opis
       };
+
       const objKeys = Object.keys(value);
       this.apiService.postKontakt(data)
         // tslint:disable-next-line: no-shadowed-variable
@@ -157,10 +166,15 @@ export class DodajUrediKontaktComponent implements OnInit {
                 }
                 if (key.startsWith('email-')) {
                   this.apiService.postEmail(contact_id, value[key]).subscribe();
-                }});
+                }
+
+              });
+
               console.warn('prvo digni loader i kada se odradi spremanje kontakta, tek onda navigiramo na popis');
               this.router.navigate(['/popis']);
-           });
-          }});
-        }}
-      }
+            });
+          }
+        });
+    }
+  }
+}
