@@ -1,8 +1,6 @@
-import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { element } from 'protractor';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({

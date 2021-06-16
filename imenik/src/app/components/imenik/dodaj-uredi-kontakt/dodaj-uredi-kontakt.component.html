@@ -3,7 +3,7 @@
     <form #f="ngForm" (ngSubmit)="asyncSaveContact(f.value)" spellcheck="false">
       <div style="background-color: rgb(255, 255, 255);">
         <div
-          style="width: 50px; height: 50px;border-radius: 51%;overflow: hidden;border: 2px solid #2e2e2e; margin-top: 2em; margin-left: 1em; display: flex; align-items: flex-end; justify-content: flex-end;">
+          style="width: 50px; height: 50px;border-radius: 51%;overflow: hidden;border: 2px solid #2e2e2e; margin-top: 30px; margin-left: 10px; margin-bottom: 30px;display: flex; align-items: flex-end; justify-content: flex-end;">
           <i class="material-icons">image</i>
           <img [src]=" " alt="">
         </div>
@@ -11,8 +11,8 @@
           <div class="ikona">
             <i class="material-icons">account_circle</i>
           </div>
-          <div class="detail-row-text" style="margin-left: 3em;">
-            <mat-form-field style=" border: 1px solid #2e2e2e; width: 300px;">
+          <div class="detail-row-text" style="margin-left: 3px;">
+            <mat-form-field style="width: 300px;">
               <mat-label>Ime i Prezime</mat-label>
               <input matInput placeholder="Name" required type="text" [(ngModel)]="contactForm.punoIme" name="punoIme">
             </mat-form-field>
@@ -22,9 +22,9 @@
           <div class="ikona">
             <i class="material-icons">phone</i>
           </div>
-          <div class="detail-row-text" style="margin-left: 3em;">
+          <div class="detail-row-text" style="margin-left: 3px;">
             <div *ngFor="let telefonskiBroj of contactForm.telefonskiBroj; trackBy:trackBy">
-              <mat-form-field class="example-full-width" style=" border: 1px solid #2e2e2e; width: 300px;">
+              <mat-form-field class="example-full-width" style="width: 300px;">
                 <mat-label>Telefonski Broj</mat-label>
                 <span matPrefix>+385 &nbsp;</span>
                 <input matInput placeholder="Phone Number" type="text" [ngModel]="telefonskiBroj.value" required
@@ -34,7 +34,7 @@
                 (click)="delPhone(telefonskiBroj.fid)"><i class="material-icons">clear</i></button>
             </div>
             <button mat-button type="button"
-              style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start;"
+              style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start; width: 50px;"
               (click)="addMorePhones()"> +Add more</button>
           </div>
         </div>
@@ -42,9 +42,9 @@
           <div class="ikona">
             <i class="material-icons">email</i>
           </div>
-          <div class="detail-row-text" style="margin-left: 3em;">
+          <div class="detail-row-text" style="margin-left: 3px;">
             <div *ngFor="let email of contactForm.email; trackBy:trackBy">
-              <mat-form-field style="border: 1px solid #2e2e2e; width: 300px;">
+              <mat-form-field style="width: 300px;">
                 <mat-label>Email adresa</mat-label>
                 <input autofocus matInput #email="ngModel" [ngModel]="email.value" placeholder="Email" type="text"
                   name="email-{{email.fid}}" required maxlength="100">
@@ -52,7 +52,7 @@
               <button mat-mini-fab color="warn" type="button" style="position: absolute;right: 32px;transform: scale(0.7);" (click)="delEmail(email.fid)"><i class="material-icons">clear</i></button>
             </div>
             <button mat-button type="button"
-              style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start;"
+              style="color: cornflowerblue; display: flex; align-items: flex-start; justify-content: flex-start; width: 50px;"
               (click)=addMoreEmails()> +Add more</button>
           </div>
         </div>
@@ -60,8 +60,8 @@
           <div class="ikona">
             <i class="material-icons">cake</i>
           </div>
-          <div class="detail-row-text" style="margin-left: 3em">
-            <mat-form-field class="example-full-width" style="border: 1px solid #2e2e2e; width: 300px;">
+          <div class="detail-row-text" style="margin-left: 3px">
+            <mat-form-field class="example-full-width" style="width: 300px;">
               <mat-label>Opis</mat-label>
               <input matInput #message maxlength="256" placeholder="Birthday" [(ngModel)]="contactForm.opis" required
                 name="opis">
@@ -72,8 +72,8 @@
         </div>
         <div class="example-button-row">
           <button mat-raised-button type="submit"
-            style="float:right; margin-right: 1em; margin-top: 1.5em;background-color:cornflowerblue;"><i
-              class="material-icons" style="margin-right: 0.5em;">save</i>Spremi</button>
+            style="float:right; margin-right: 1px; margin-top: 1.5px;background-color:cornflowerblue;"><i
+              class="material-icons" style="margin-right: 0.5px;">save</i>Spremi</button>
         </div>
       </div>
     </form>

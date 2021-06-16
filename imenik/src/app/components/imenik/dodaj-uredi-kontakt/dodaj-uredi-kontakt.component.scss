@@ -1,6 +1,6 @@
 .detail-row {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 14px;
     position: relative;
 
     .ikona {
@@ -10,7 +10,7 @@
         align-items: center;
         justify-content: center;
         position: relative; 
-        left: 10px;
+        left: 5px;
 
     }
 
@@ -27,4 +27,9 @@
             color: black;
         }
     }
+}
+
+.example-button-row
+{
+    padding-right: 17px;
 }
