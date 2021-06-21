@@ -1,8 +1,23 @@
 <div *ngIf="kontakt">
-  <div style="background-color: rgb(241, 233, 233); padding-bottom: 2rem;">
+  <div style="background-color: rgb(241, 233, 233); padding-bottom: 20px;">
     <app-back-button></app-back-button>
-    <button mat-button style="color: cornflowerblue;margin-top:1em; margin-left: 14em;"
-      (click)="editContact()">Edit</button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Više"
+      style="color: cornflowerblue;margin-top:10px; margin-left: 10px; position: absolute; right: 5px;transform: scale(0.9);">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="editContact()">
+        <mat-icon>mode_edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <div class="dialog">
+        <button mat-menu-item (click)="asyncBtnBrisanje(kontakt.id)" color="primary">
+          <mat-icon>delete_outline</mat-icon>
+          <span>Brisanje</span>
+        </button>
+      </div>
+    </mat-menu>
     <div>
       <div
         style="width: 50px; height: 50px;border-radius: 51%;overflow: hidden;border: 2px solid #2e2e2e;margin: auto;">
@@ -10,14 +25,15 @@
           alt="">
       </div>
     </div>
-    <div  style="text-align: center; margin-top: 0.5em; font-size: 2rem;">
+    <div style="text-align: center; margin-top: 0.5em; font-size: 2rem;">
       {{ kontakt.ime}} {{kontakt.prezime}}
     </div>
-    <div *ngIf="kontakt.telefon[0]" style="text-align: center; margin-top: 0.5px; font-size: 1.5rem; color: #aaa; font-weight: bold;">
+    <div *ngIf="kontakt.telefon[0]"
+      style="text-align: center; margin-top: 0.5em; font-size: 1.5rem; color: #aaa; font-weight: bold;">
       (385) {{ kontakt.telefon[0].telefon}}
     </div>
   </div>
-  <p style="color: rgb(184, 177, 177); margin: 0.5px">OTHER DETAILS</p>
+  <p style="color: rgb(184, 177, 177); margin-bottom: 15px; margin-left: 3px;">OTHER DETAILS</p>
 
   <div class="detail-row">
     <div class="ikona">
@@ -51,20 +67,17 @@
       <div class="info">{{kontakt.opis}}</div>
     </div>
   </div>
-
-
-  <div class="detail-row">
-    <div class="dialog">
-  <button mat-flat-button color="warn" style="position:relative;float:left; transform: scale(0.8); margin-left: -1em;margin-bottom: -4em;" (click)= asyncBtnBrisanje(kontakt.id)><i class="material-icons">clear</i>Obriši kontakt</button>
-</div>
-</div>
   <div class="example-button-row">
-    <div class="example-flex-container">
-      <mat-button-toggle-group  mat-mini-fab
-        style="margin-top: 104px; margin-left: 0.5px;">
-          <mat-button-toggle style="background-color: rgb(11, 112, 11); color: white;"><mat-icon>phone</mat-icon></mat-button-toggle>
-          <mat-button-toggle>Slide to call</mat-button-toggle>
-      </mat-button-toggle-group>
+    <div class="example-flex-container" style="height: 2px;">
+      <mat-slider
+        style="margin-top: 104px; margin-left: 0.5px; border-radius: 15px 50px 30px 5px; position: absolute;transform: scale(0.9);">
+        <mat-button-toggle>
+          <button mat-mini-fab style="background-color: rgb(11, 112, 11); color: white; border-radius: 25px;">
+            <mat-icon>phone</mat-icon>
+          </button>
+          Slide to call
+        </mat-button-toggle>
+      </mat-slider>
       <button mat-mini-fab aria-label="Example icon button with a menu icon"
         style="background-color: rgb(219, 189, 14); color: white; margin-top: 104px; float: right; margin-left: 1px; margin-right: 1px">
         <mat-icon>mail</mat-icon>

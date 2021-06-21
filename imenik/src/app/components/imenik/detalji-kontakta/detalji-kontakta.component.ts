@@ -50,15 +50,17 @@ export class DetaljiKontaktaComponent implements OnInit {
     this.router.navigate(['/uredi/', this.kontaktID]);
   }
 
- async asyncBtnBrisanje(id2: number): Promise<void> {
+  async asyncBtnBrisanje(id2: number): Promise<void> {
     const dialogRef = this.dialog.open(DialogBrisanjeComponent, {
       data: { id: id2, title: 'Jeste li sigurni da želite obrisati ovaj kontakt?' }
     });
-    const potvrda = await  dialogRef.afterClosed().toPromise();
-    if (potvrda){
-     await this.apiService.deleteEmail(this.kontaktID).toPromise();
-     await this.apiService.deleteTelefon(this.kontaktID).toPromise();
-     await this.apiService.deleteKontakt(this.kontaktID).toPromise();
-     this.router.navigate(['/']);
+    const potvrda = await dialogRef.afterClosed().toPromise();
+    if (potvrda) {
+      await this.apiService.deleteEmail(this.kontaktID).toPromise();
+      await this.apiService.deleteTelefon(this.kontaktID).toPromise();
+      await this.apiService.deleteKontakt(this.kontaktID).toPromise();
+      this.router.navigate(['/']);
+    }
   }
-}}
+}
+
