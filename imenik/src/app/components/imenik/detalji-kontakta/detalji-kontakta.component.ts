@@ -49,6 +49,9 @@ export class DetaljiKontaktaComponent implements OnInit {
   editContact(): void {
     this.router.navigate(['/uredi/', this.kontaktID]);
   }
+  // swipeToNextSlide(): any{
+  //   this.router.navigate(['/popis']);
+  // }
 
   async asyncBtnBrisanje(id2: number): Promise<void> {
     const dialogRef = this.dialog.open(DialogBrisanjeComponent, {
